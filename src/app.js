@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import { dbConnection } from "./config/database.js";
 import authRoutes from "./routes/auth.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
-import { verifyToken } from "./libs/jwt.js";
+import { verifyToken } from "./middlewares/validateToken.js";
 
 const app = express();
 

@@ -5,13 +5,18 @@ import {
   profile,
   register,
 } from "../controllers/auth.controller.js";
-import { verifyToken } from "../libs/jwt.js";
+import { verifyToken } from "../middlewares/validateToken.js";
+import { validateSchema } from "../middlewares/validation.middleware.js";
+import {
+  loginValidation,
+  registerValidation,
+} from "../validations/auth.validation.js";
 
 const router = Router();
 
-router.post("/login", login);
+router.post("/login", validateSchema(loginValidation), login);
 router.post("/logout", logout);
-router.post("/register", register);
+router.post("/register", validateSchema(registerValidation), register);
 router.get("/profile", verifyToken, profile);
 
 export default router;
