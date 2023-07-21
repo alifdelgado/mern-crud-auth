@@ -24,7 +24,7 @@ export const login = async (req, res) => {
       updatedAt: userFound.updatedAt,
     });
   } catch (error) {
-    return res.status(400).json({ mesaage: "User already exists" });
+    return res.status(400).json({ message: ["User already exists"] });
   }
 };
 
@@ -34,8 +34,12 @@ export const logout = (req, res) => {
 };
 
 export const register = async (req, res) => {
+  const { email, password, username } = req.body;
   try {
-    const { email, password, username } = req.body;
+    const userFound = await User.findOne({ email });
+    if (userFound)
+      return res.status(400).json({ message: ["User already exists"] });
+
     const hashedPassword = bcrypt.hashSync(password, 10);
     const user = new User({ email, password: hashedPassword, username });
     await user.save();
@@ -51,7 +55,7 @@ export const register = async (req, res) => {
       updatedAt: user.updatedAt,
     });
   } catch (error) {
-    return res.status(400).json({ mesaage: "User already exists" });
+    return res.status(400).json({ message: ["User already exists"] });
   }
 };
 
