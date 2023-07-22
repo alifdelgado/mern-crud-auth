@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const RegisterPage = () => {
@@ -84,6 +84,12 @@ const RegisterPage = () => {
             Register
           </button>
         </div>
+        <p className="flex justify-between w-1/2 mx-auto mt-3">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600">
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );

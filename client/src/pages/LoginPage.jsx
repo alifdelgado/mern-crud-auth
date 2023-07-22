@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -9,7 +9,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
   } = useForm();
-  const { isAuthenticated, signup, errors: RegisterErrors } = useAuth();
+  const { isAuthenticated, signin, errors: SigninErrors } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const LoginPage = () => {
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit(async (values) => {
-    signup(values);
+    signin(values);
   });
 
   return (
@@ -28,7 +28,7 @@ const LoginPage = () => {
         className="w-5/12 py-5 mx-auto mt-5 bg-gray-200 border rounded shadow shadow-gray-400"
         noValidate
       >
-        {RegisterErrors.map((error, i) => (
+        {SigninErrors.map((error, i) => (
           <div
             className="w-1/2 p-2 mx-auto mb-3 text-center text-white bg-red-600 rounded"
             key={i}
@@ -70,6 +70,12 @@ const LoginPage = () => {
             Register
           </button>
         </div>
+        <p className="flex justify-between w-1/2 mx-auto mt-3">
+          Already not a member?
+          <Link to="/register" className="text-blue-600">
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );
