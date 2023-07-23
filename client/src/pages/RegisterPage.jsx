@@ -85,7 +85,7 @@ const RegisterPage = () => {
           </button>
         </div>
         <p className="flex justify-between w-1/2 mx-auto mt-3">
-          Already have an account?{" "}
+          Already have an account?
           <Link to="/login" className="text-blue-600">
             Login
           </Link>
