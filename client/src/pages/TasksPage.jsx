@@ -8,8 +8,8 @@ const TasksPage = () => {
     getTasks();
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <section className="w-10/12 flex flex-col mx-auto">
+    <div className="flex flex-col items-center h-screen">
+      <section className="w-10/12 flex flex-col mx-auto mt-16">
         <div className="w-full flex justify-between text-2xl border bg-teal-700 p-3 rounded text-white shadow-teal-900">
           <div>Title</div>
           <div>Description</div>
