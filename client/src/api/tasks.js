@@ -6,7 +6,7 @@ export const findTaskRequest = (id) => axios.get(`/tasks/${id}`);
 
 export const createTaskRequest = (task) => axios.post("/tasks", task);
 
-export const updateTaskRequest = (task) =>
-  axios.patch(`/tasks/${task.id}`, task);
+export const updateTaskRequest = (id, task) =>
+  axios.patch(`/tasks/${id}`, task);
 
 export const deleteTaskRequest = (id) => axios.delete(`/tasks/${id}`);

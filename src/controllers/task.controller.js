@@ -7,7 +7,8 @@ export const findAllTasks = async (req, res) => {
 
 export const findTask = async (req, res) => {
   const task = await Task.findOne({
-    where: { id: req.params.id, user: req.user_id },
+    _id: req.params.id,
+    user: req.user_id,
   }).populate("user");
   if (!task) return res.status(404).json({ message: "Task not found" });
   return res.status(200).json(task);

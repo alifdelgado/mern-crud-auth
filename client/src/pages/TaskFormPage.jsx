@@ -1,16 +1,33 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTasks } from "../context/TaskContext";
 
 const TaskFormPage = () => {
-  const { register, handleSubmit } = useForm();
-  const { createTask } = useTasks();
+  const { register, handleSubmit, setValue } = useForm();
+  const { createTask, getTask, updateTask } = useTasks();
   const navigate = useNavigate();
+  const params = useParams();
 
   const onSubmit = handleSubmit((data) => {
-    createTask(data);
+    if (params.id) {
+      updateTask(params.id, data);
+    } else {
+      createTask(data);
+    }
     navigate("/tasks");
   });
+
+  useEffect(() => {
+    const loadTask = async () => {
+      if (params.id) {
+        const task = await getTask(params.id);
+        setValue("title", task.title);
+        setValue("description", task.description);
+      }
+    };
+    loadTask();
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -43,7 +60,7 @@ const TaskFormPage = () => {
             type="submit"
             className="w-full p-3 text-white bg-blue-600 rounded shadow shadow-blue-900"
           >
-            Create task
+            Save task
           </button>
         </div>
       </form>
