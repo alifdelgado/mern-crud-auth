@@ -67,7 +67,7 @@ const LoginPage = () => {
             type="submit"
             className="w-full p-3 text-white bg-blue-600 rounded shadow shadow-blue-900"
           >
-            Register
+            Login
           </button>
         </div>
         <p className="flex justify-between w-1/2 mx-auto mt-3">
